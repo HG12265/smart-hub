@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Your Order - Mobile Store</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+   
+    /* Tracker Box */
+    .tracker-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    #orderId {
+      padding: 10px 14px;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      margin-right: 6px;
+      width: 200px;
+      transition: .3s;
+    }
+    #orderId:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(37,99,235,0.4); }
+
+    /* Buttons (common style for links too) */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg,#9333ea,#4f46e5);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 18px;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(147,51,234,0.4);
+      transition: transform .25s ease, box-shadow .25s ease, background .4s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      background: linear-gradient(90deg,#10b981,#3b82f6);
+      box-shadow: 0 6px 16px rgba(16,185,129,0.6);
+    }
+
+    /* Custom Buttons */
+    .chat-btn {
+      background: linear-gradient(90deg,#9333ea,#4f46e5);
+    }
+    .chat-btn:hover {
+      background: linear-gradient(90deg,#a855f7,#6366f1);
+    }
+    .call-btn {
+      background: linear-gradient(90deg,#10b981,#059669);
+    }
+    .call-btn:hover {
+      background: linear-gradient(90deg,#34d399,#047857);
+    }
+   .input-group {
+      width: 100%;
+      padding: 12px 40px 12px 14px;
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+  #orderId{
+     border: 1px solid white;
+  }
+    /* Progress Timeline */
+    .progress { display: flex; justify-content: space-between; margin: 30px 0; position: relative; }
+    .progress::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 50px;
+      right: 50px;
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .progress-step { flex: 1; text-align: center; position: relative; z-index: 1; margin-bottom: 30px; }
+    .circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--border);
+      margin: auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      transition: transform .3s ease, box-shadow .3s ease, background .4s ease, border .4s ease;
+    }
+    .progress-step.active .circle {
+      border-color: var(--primary);
+      background: linear-gradient(135deg,#9333ea,#4f46e5);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(147,51,234,0.8);
+      transform: scale(1.15);
+    }
+    .progress-step p { margin-top: 8px; font-weight: 600; }
+
+    /* Delivery Widget */
+    .delivery-widget {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Tips + Support */
+    .tips, .support {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .tips ul { margin-top: 10px; padding-left: 20px; }
+    .support { text-align: center; }
+
+    /* FAQ */
+    .faq details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: border .3s, box-shadow .3s;
+    }
+    .faq details summary { font-weight: 600; }
+    .faq details:hover { border: 1px solid #9333ea; }
+    .faq details[open] { border: 1px solid #10b981; }
+
+    /* Animations */
+    @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+
+    /* Desktop Layout */
+    @media(min-width:900px){
+      .hero { display:flex; align-items:center; justify-content:space-between; text-align:left; padding:80px 60px; }
+      .hero img { max-width: 300px; margin: 10px; }
+
+      .track-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 30px;
+      }
+      .progress { flex-direction: column; align-items: flex-start; margin:0; }
+      .progress::before { top:0; left:18px; right:auto; bottom:0; width:4px; height:auto; }
+      .progress-step { text-align: left; display:flex; align-items:center; gap:12px; }
+      .progress-step p { margin:0; }
+
+      /* Tips + Support grid */
+      .tips-support {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+      Smart Hub
+    </h1>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Track Your Order in Real-Time 🚚</h1>
+    <p>Enter your Order ID to check live status and estimated delivery date.</p>
+  </div>
+  <img src="images/tracking.png" alt="Tracking Illustration"/>
+</section>
+
+<div class="track-wrapper">
+  <section class="tracker-box">
+    <h2>Enter Your Order ID</h2>
+    <input type="text" class="input-group" id="orderId" placeholder="e.g. ORD123456"/>
+    <button class="btn" onclick="trackOrder()">Track Order</button>
+    <p id="orderResult" class="muted"></p>
+
+    <div class="delivery-widget" id="deliveryWidget" style="display:none;">
+      <h3>📦 Delivery Info</h3>
+      <p id="estDelivery"></p>
+      <p id="hubInfo"></p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Order Status Timeline</h3>
+    <div class="progress" id="timeline">
+      <div class="progress-step"><div class="circle">🛒</div><p>Order Placed</p></div>
+      <div class="progress-step"><div class="circle">📦</div><p>Shipped</p></div>
+      <div class="progress-step"><div class="circle">🚚</div><p>Out for Delivery</p></div>
+      <div class="progress-step"><div class="circle">✅</div><p>Delivered</p></div>
+    </div>
+  </section>
+</div>
+
+<div class="tips-support">
+  <section class="tips">
+    <h3>Tracking Tips 💡</h3>
+    <ul>
+      <li>🔔 Enable SMS or Email notifications for updates.</li>
+      <li>🕑 Status refreshes every 2–3 hours.</li>
+      <li>📦 Tracking ID is generated only after dispatch.</li>
+    </ul>
+  </section>
+
+  <section class="support">
+    <h3>Need Help? 📞</h3>
+    <p>Our 24/7 support team is here to assist you with your order.</p>
+
+    <!-- WhatsApp Chat -->
+    <a href="https://wa.me/919344232465" target="_blank" class="btn chat-btn">💬 Chat Now</a>
+    <p class="muted">Instant reply on WhatsApp</p>
+
+    <!-- Call -->
+    <a href="tel:+919344232465" class="btn call-btn">📞 Call Us</a>
+    <p class="muted">Available 24/7 Toll-free number</p>
+  </section>
+</div>
+
+<section class="faq">
+  <h3>Tracking FAQs ❓</h3>
+  <details>
+    <summary>Why is my tracking not updating?</summary>
+    <p>Status updates may take a few hours after each scan at a hub.</p>
+  </details>
+  <details>
+    <summary>I lost my Order ID. What should I do?</summary>
+    <p>Please check your confirmation email or contact support to retrieve your Order ID.</p>
+  </details>
+  <details>
+    <summary>Can I reschedule delivery?</summary>
+    <p>Yes, if your order is out for delivery, you can reschedule via the courier partner link sent to you.</p>
+  </details>
+</section>
+
+<footer class="site-footer">
+  <p class="copy">© <span id="year"></span> Mobile Store</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function trackOrder(){
+  const orderId = document.getElementById("orderId").value.trim();
+  const result = document.getElementById("orderResult");
+  const deliveryWidget = document.getElementById("deliveryWidget");
+  const timeline = document.querySelectorAll("#timeline .progress-step");
+  if(orderId.match(/^ORD[0-9]{6}$/)){
+    result.textContent = "✅ Order " + orderId + " found. Fetching status...";
+    timeline.forEach(step => step.classList.remove("active"));
+    const progressIndex = Math.floor(Math.random()*4);
+    for(let i=0;i<=progressIndex;i++){ timeline[i].classList.add("active"); }
+    const days = Math.floor(Math.random()*3)+3;
+    const hubs = ["Chennai Hub","Mumbai Hub","Delhi Hub","Bangalore Hub"];
+    const hub = hubs[Math.floor(Math.random()*hubs.length)];
+    document.getElementById("estDelivery").textContent = "Expected Delivery: " + days + " days.";
+    document.getElementById("hubInfo").textContent = "Current Location: " + hub;
+    deliveryWidget.style.display = "block";
+  } else {
+    result.textContent = "❌ Please enter a valid Order ID (e.g. ORD123456).";
+    deliveryWidget.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>

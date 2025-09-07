@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Returns & Refunds - Mobile Store</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    :root {
+      --hero-from: #0ea5e9;
+      --hero-to: #6366f1;
+      --accent: #2563eb;
+      --card: #fff;
+      --border: #ddd;
+      --muted: #555;
+    }
+    /* Desktop nav */
+    @media(min-width:900px) {
+      .hamburger { display:none; }
+      .nav {
+        display:flex !important;
+        position:static;
+        flex-direction:row;
+        gap:20px;
+        background:none;
+        box-shadow:none;
+        padding:0;
+      }
+    }
+  /* Desktop 2-column grids */
+@media(min-width: 900px) {
+  .grid-two {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin: 20px;
+  }
+  .grid-two .card { margin: 0; }
+}
+ 
+  .input-group {
+      width: 100%;
+      padding: 12px 40px 12px 14px;
+      border: 1px solid white;
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+      margin: 20px;
+    }
+    .btn {
+      display:inline-block;
+      background: linear-gradient(90deg,var(--accent), #1d4ed8);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn.call { background: linear-gradient(90deg,#10b981,#059669); }
+
+    .muted { color: var(--muted); font-size:0.9rem; }
+    .success {
+      background: #dcfce7;
+      border-left:4px solid #16a34a;
+      padding:10px;
+      margin-top:10px;
+      border-radius:6px;
+      color:#064e3b;
+    }
+
+    /* Timeline */
+    .timeline { display:flex; justify-content:space-between; margin-top:14px; }
+    .tl-step { text-align:center; }
+    .tl-circle {
+      width:40px; height:40px;
+      border-radius:50%;
+      border:2px solid white;
+      display:flex; align-items:center; justify-content:center;
+      margin:auto;
+    }
+    .tl-step.active .tl-circle {
+      background: linear-gradient(135deg,#10b981,#3b82f6);
+      color: white;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-8px); }
+    }
+   }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <h1 class="brand">
+        <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+        Smart Hub
+      </h1>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist ❤️ </a>
+      <a href="cart.html">Cart 🛒 </a>
+      <a href="checkout.html">Checkout</a>
+      <a href="contact.html">Contact</a>
+      <button id="themeToggle" class="btn ghost sm">🌙</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Hassle-Free Returns & Refunds 🔁</h1>
+    <p>Shop worry-free — return within 7 days for eligible items.</p>
+    <img class="hero-illus" src="images/returns.jpg" alt="Returns Illustration" height="150px"/>
+  </section>
+
+<main>
+  <!-- Grid 1 -->
+  <div class="grid-two">
+    <!-- Left: Return Form -->
+    <div class="card">
+      <h3>Start a Return Request</h3>
+      <label>Order ID</label>
+      <input type="text" class="input-group" id="rOrder" placeholder="e.g. ORD123456" />
+      <label>Reason</label>
+      <select class="input-group" id="rReason">
+        <option value="">-- Select reason --</option>
+        <option>Defective / Not working</option>
+        <option>Wrong item delivered</option>
+        <option>Damaged in transit</option>
+        <option>Missing parts / accessories</option>
+        <option>No longer needed / ordered by mistake</option>
+      </select>
+      <label>Comments</label>
+      <textarea class="input-group" id="rComment"></textarea>
+      <button class="btn" id="submitReturn">Submit</button>
+      <div id="returnStatusArea"></div>
+    </div>
+
+    <!-- Right: Policy -->
+    <div class="card">
+      <h3>Policy Highlights</h3>
+      <p>📦 7-day return window</p>
+      <p>💳 Refund to original method</p>
+      <p>🔁 Exchange option available</p>
+    </div>
+  </div>
+
+  <!-- Grid 2 -->
+  <div class="grid-two">
+    <!-- Left: Timeline -->
+    <div class="card">
+      <h3>How Returns Work</h3>
+      <div class="timeline">
+        <div class="tl-step active"><div class="tl-circle">1</div><p>Request</p></div>
+        <div class="tl-step"><div class="tl-circle">2</div><p>Pickup</p></div>
+        <div class="tl-step"><div class="tl-circle">3</div><p>Refund</p></div>
+      </div>
+    </div>
+
+    <!-- Right: Support -->
+    <div class="card">
+      <h3>Need Help?</h3>
+      <a href="https://wa.me/919344232465" target="_blank" class="btn">💬 WhatsApp</a>
+      <a href="tel:+919344232465" class="btn call">📞 Call</a>
+      <p class="muted">Available 24/7</p>
+    </div>
+  </div>
+</main>
+
+
+  <footer class="site-footer">
+    <p class="copy">© <span id="year"></span> Mobile Store</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

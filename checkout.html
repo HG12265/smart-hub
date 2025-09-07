@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkout - Mobile Store</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+      Smart Hub
+    </h1>
+  </div>
+
+  <!-- Hamburger (only visible in mobile) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Secure & Easy Checkout 💳</h1>
+    <p>Complete your purchase quickly with safe payment options.</p>
+  </div>
+  <img src="images/checkout.png" alt="Checkout Illustration"/>
+</section>
+
+
+<section class="checkout">
+  <form id="checkoutForm" onsubmit="payNow(event)" class="card">
+    <h2>Billing Details</h2>
+
+    <label>Name</label>
+    <input type="text" id="name" required/>
+
+    <label>Email</label>
+    <input type="email" id="email" required/>
+
+    <label>Phone</label>
+    <input type="tel" id="phone" pattern="[0-9]{10}" placeholder="10-digit mobile" required/>
+
+    <label>Address</label>
+    <textarea id="address" required></textarea>
+
+    <label>Payment Method</label>
+    <div class="radio-group">
+      <label><input type="radio" name="payment" value="UPI" checked/> UPI</label>
+      <label><input type="radio" name="payment" value="Card"/> Card</label>
+      <label><input type="radio" name="payment" value="COD"/> Cash on Delivery</label>
+    </div>
+
+    <label>Order Notes (optional)</label>
+    <textarea id="notes" placeholder="Any delivery instructions?"></textarea>
+
+    <h3>Coupon</h3>
+    <div class="coupon-row">
+      <input type="text" id="couponCode" placeholder="Enter coupon e.g. DISCOUNT10 or FREESHIP"/>
+      <button type="button" class="btn" onclick="applyCoupon()">Apply</button>
+      <button type="button" class="btn ghost" onclick="removeCoupon()">Remove</button>
+    </div>
+    <div id="couponMsg" class="muted" style="margin-bottom:8px;"></div>
+
+    <div id="freeShippingBanner" class="banner"></div>
+
+    <h3>Cart Summary</h3>
+    <div id="cartSummary" class="summary"></div>
+    <div class="totals small">
+      <div class="row"><span>Subtotal</span><strong id="coSubtotal">₹0</strong></div>
+      <div class="row"><span>Discount</span><strong id="coDiscount">-₹0</strong></div>
+      <div class="row"><span>Tax</span><strong id="coTax">₹0</strong></div>
+      <div class="row"><span>Shipping</span><strong id="coShipping">₹0</strong></div>
+      <div class="row grand"><span>Total</span><strong id="coGrand">₹0</strong></div>
+    </div>
+
+    <button type="submit" class="btn lg block">Place Order 💰</button>
+  </form>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

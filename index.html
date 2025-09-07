@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobile Store - Home</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+      Smart Hub
+    </h1>
+  </div>
+
+  <!-- Hamburger (only visible in mobile) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+
+
+<!-- Hero Slider (Fade) -->
+<section class="hero-slider">
+  <div class="slides">
+    <div class="slide active">
+      <img src="images/smartphone.jpg" alt="Latest Smartphone">
+      <div class="caption">
+        <h2>Latest Smartphones 🚀</h2>
+        <p>High performance, great deals!</p>
+        <a href="products.html" class="btn lg">Shop Now</a>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="images/tablet.jpg" alt="Tablet Deals">
+      <div class="caption">
+        <h2>Tablets for Study & Work 📚</h2>
+        <p>Big screen, powerful battery.</p>
+        <a href="products.html" class="btn lg">Explore</a>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="images/airbudspro.jpeg" alt="AirPods Pro 2">
+      <div class="caption">
+        <h2>AirPods Pro 2 🎧</h2>
+        <p>Noise cancellation like never before.</p>
+        <a href="products.html" class="btn lg">Buy Now</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="prev" onclick="changeSlide(-1)">❮</button>
+  <button class="next" onclick="changeSlide(1)">❯</button>
+  <div class="dots" id="sliderDots"></div>
+</section>
+
+<!-- Featured Products -->
+<section class="featured">
+  <h2 class="section-title">Featured Products</h2>
+
+  <div class="featured-products">
+    <div class="product-card">
+      <div class="badge">10% OFF</div>
+      <img src="images/smartphone.jpg" alt="Smartphone" />
+      <h3>Smartphone</h3>
+      <p class="price">₹15,000</p>
+      <a href="products.html" class="btn">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <div class="badge">10% OFF</div>
+      <img src="images/tablet.jpg" alt="Tablet" />
+      <h3>Tablet</h3>
+      <p class="price">₹20,000</p>
+      <a href="products.html" class="btn">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <div class="badge">New</div>
+      <img src="images/airbudspro.jpeg" alt="AirPods Pro 2" />
+      <h3>AirPods Pro 2</h3>
+      <p class="price">₹25,000</p>
+      <a href="products.html" class="btn">Buy Now</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="cols">
+    <div>
+      <h4>Mobile Store</h4>
+      <p>Your one-stop shop for gadgets.</p>
+    </div>
+    <div>
+      <h4>Links</h4>
+      <ul>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="shipping.html">Shipping</a></li>
+        <li><a href="returns.html">Returns</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="track.html">Order Tracking</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="copy">© <span id="year"></span> Mobile Store</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

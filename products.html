@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Products - Mobile Store</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+      Smart Hub
+    </h1>
+  </div>
+
+  <!-- Hamburger (only visible in mobile) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Explore Our Latest Products 🛍️</h1>
+    <p>Discover top-quality gadgets and accessories at the best prices.</p>
+  </div>
+  <img src="images/product-page.png" alt="Products Showcase"/>
+</section>
+
+<section class="products">
+  <h2 class="section-title">All Products</h2>
+
+  <div class="toolbar">
+    <div class="tool">
+      <label>Category</label>
+      <select id="categoryFilter" onchange="filterCategory()">
+        <option value="all">All</option>
+        <option value="mobile">Mobile</option>
+        <option value="tablet">Tablet</option>
+        <option value="accessory">Accessory</option>
+        <option value="laptop">Laptop</option>
+        <option value="tv">TV</option>
+      </select>
+    </div>
+
+    <div class="tool">
+      <label>Sort</label>
+      <select id="sortSelect" onchange="sortProducts()">
+        <option value="default">Featured</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="rating-desc">Rating: High → Low</option>
+      </select>
+    </div>
+
+    <div class="tool grow">
+      <label class="sr">Search</label>
+      <input type="text" id="searchBar" placeholder="Search product..." oninput="searchProduct()"/>
+    </div>
+  </div>
+
+  <div class="products-container" id="productContainer">
+    <!-- JS injects cards -->
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <img id="modalImg" src="images/tablet.jpg" alt="Product preview"/>
+    <h3 id="modalName"></h3>
+    <div id="modalRating" class="stars"></div>
+    <p id="modalPrice" class="price"></p>
+    <p id="modalDesc" class="muted"></p>
+    <div style="display:flex; gap:8px; justify-content:center; margin-top:12px;">
+      <button id="modalAddBtn" class="btn">Add to Cart</button>
+      <button id="modalWishBtn" class="btn ghost" onclick="">♥ Wishlist</button>
+      <div class="reviews">
+      <h4>Customer Reviews</h4>
+      <ul id="modalReviews">
+        <li>⭐ Great quality product!</li>
+        <li>⭐ Worth the money.</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Wishlist - Mobile Store</title>
+<link rel="stylesheet" href="style.css"/>
+ 
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+      Smart Hub
+    </h1>
+  </div>
+
+  <!-- Hamburger (only visible in mobile) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+<section class="hero">
+  <div class="hero-text">
+    <h1>❤️ Your Wishlist</h1>
+    <p>Save your favorite products and come back anytime to shop them later.</p>
+  </div>
+  <img class="hero-illus" src="images/wishlist.png" alt="Wishlist Illustration"/>
+</section>
+
+
+<section class="products">
+  <h2 class="section-title">Your Wishlist</h2>
+  <div class="products-container" id="wishlistContainer">
+    <!-- JS injects wishlist items -->
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

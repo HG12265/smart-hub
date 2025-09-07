@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shipping Information - Mobile Store</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Progress Timeline */
+    .progress {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0;
+      position: relative;
+    }
+    .progress::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 50px;
+      right: 50px;
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .progress-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 30px;
+    }
+    .circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--border);
+      margin: auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      transition: transform .3s ease, box-shadow .3s ease, background .4s ease, border .4s ease;
+    }
+    .progress-step.active .circle {
+      border-color: var(--primary);
+      background: linear-gradient(135deg,#2563eb,#3b82f6);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(59,130,246,0.8);
+      transform: scale(1.15);
+    }
+    .progress-step.active .circle:hover {
+      background: linear-gradient(135deg,#10b981,#3b82f6);
+      box-shadow: 0 0 18px rgba(16,185,129,0.9);
+    }
+    .progress-step p { margin-top: 8px; font-weight: 600; }
+
+    /* Cards */
+    .policy, .trust, .faq details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform .25s ease, box-shadow .25s ease, border .4s ease;
+    }
+    .policy:hover, .trust:hover, .faq details:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+    .trust ul, .policy ul { margin-top: 10px; padding-left: 20px; }
+    .faq details summary {
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .faq details:hover {
+      border: 1px solid #3b82f6;
+      box-shadow: 0 6px 14px rgba(59,130,246,0.25);
+    }
+    .faq details[open] {
+      border: 1px solid #10b981;
+      box-shadow: 0 6px 14px rgba(16,185,129,0.25);
+    }
+
+    /* Pincode */
+    #pincode {
+      padding: 10px 14px;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      margin-right: 6px;
+      width: 180px;
+      transition: .3s;
+    }
+    #pincode:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(37,99,235,0.4);
+    }
+
+    /* Buttons */
+    .btn {
+      background: linear-gradient(90deg,#2563eb,#1d4ed8);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 18px;
+      font-weight: 600;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.4);
+      transition: transform .25s ease, box-shadow .25s ease, background .4s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      background: linear-gradient(90deg,#10b981,#3b82f6);
+      box-shadow: 0 6px 16px rgba(16,185,129,0.6);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Banner */
+    .banner-top {
+      background: linear-gradient(90deg,#d1fae5,#ecfccb);
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #064e3b;
+    }
+
+      /* Shipping info + timeline grid */
+      .shipping-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 30px;
+      }
+      .progress {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0;
+      }
+      .progress::before {
+        top: 0;
+        left: 18px;
+        right: auto;
+        bottom: 0;
+        width: 4px;
+        height: auto;
+      }
+      .progress-step {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .progress-step p { margin: 0; }
+
+      /* Policy + Trust side by side */
+      .policy-trust {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+      Smart Hub
+    </h1>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+
+<div class="banner-top">🎉 Free shipping above ₹5000! Use code <strong>FREESHIP</strong></div>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Fast & Reliable Shipping Across India 🚚</h1>
+    <p>We ensure quick, safe and affordable delivery to your doorstep.</p>
+  </div>
+  <img src="images/shipping.png" alt="Delivery Truck"/>
+</section>
+
+<div class="shipping-wrapper">
+  <section class="card">
+    <h2>Shipping Information 🚛</h2>
+    <p>We deliver orders within <strong>5–7 business days</strong> across India.</p>
+
+    <h3>Check Delivery Availability</h3>
+    <input type="text" id="pincode" placeholder="Enter PIN code"/>
+    <button class="btn" onclick="checkPincode()">Check</button>
+    <p id="pinResult" class="muted"></p>
+  </section>
+
+  <section class="card">
+    <h3>Delivery Timeline</h3>
+    <div class="progress">
+      <div class="progress-step active"><div class="circle">🛒</div><p>Order Placed</p></div>
+      <div class="progress-step"><div class="circle">📦</div><p>Shipped</p></div>
+      <div class="progress-step"><div class="circle">🚚</div><p>Out for Delivery</p></div>
+      <div class="progress-step"><div class="circle">✅</div><p>Delivered</p></div>
+    </div>
+  </section>
+</div>
+
+<div class="policy-trust">
+  <section class="policy">
+    <h3>Our Shipping Policy 📜</h3>
+    <ul>
+      <li>✅ Free shipping for orders above ₹5000.</li>
+      <li>📦 Standard Delivery: 5–7 days (₹199 for orders below ₹5000).</li>
+      <li>⚡ Express Delivery: 2–3 days for metro cities (₹299 extra).</li>
+      <li>💳 Cash on Delivery available in select areas.</li>
+      <li>🌍 International shipping coming soon!</li>
+    </ul>
+  </section>
+
+  <section class="trust">
+    <h3>Why Shop With Us? 💙</h3>
+    <ul>
+      <li>✅ Pan-India delivery coverage</li>
+      <li>🔒 Safe & Secure packaging</li>
+      <li>📦 Real-time tracking</li>
+      <li>💸 Easy returns & refunds</li>
+      <li>⚡ Fast processing & dispatch</li>
+    </ul>
+  </section>
+</div>
+
+<section class="faq">
+  <h3>Frequently Asked Questions ❓</h3>
+  <details>
+    <summary>How long does delivery take?</summary>
+    <p>Standard delivery takes 5–7 business days. Express delivery takes 2–3 days (extra charge).</p>
+  </details>
+  <details>
+    <summary>Can I change my address after ordering?</summary>
+    <p>Yes, you can update your address within 24 hours of placing the order by contacting our support.</p>
+  </details>
+  <details>
+    <summary>Do you offer international shipping?</summary>
+    <p>Currently, we deliver only in India. International shipping will be available soon.</p>
+  </details>
+</section>
+
+<footer class="site-footer">
+  <p class="copy">© <span id="year"></span> Smart Hub</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function checkPincode(){
+  const pin = document.getElementById("pincode").value.trim();
+  const result = document.getElementById("pinResult");
+  if(pin.match(/^[1-9][0-9]{5}$/)){
+    const days = Math.floor(Math.random()*3)+5;
+    result.textContent = "✅ Delivery available to " + pin + " within " + days + " days.";
+  } else {
+    result.textContent = "❌ Please enter a valid 6-digit PIN code.";
+  }
+}
+</script>
+</body>
+</html>

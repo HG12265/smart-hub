@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Order Confirmation - Mobile Store</title>
+<link rel="stylesheet" href="style.css"/>  
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="brand">
+      <img src="images/logo.png" alt="Mobile Store Logo" class="logo" />
+     Smart Hub
+    </h1>
+  </div>
+
+  <!-- Hamburger (only visible in mobile) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="wishlist.html">Wishlist ❤️ </a>
+    <a href="cart.html">Cart 🛒 </a>
+    <a href="checkout.html">Checkout</a>
+    <a href="contact.html">Contact</a>
+    <button id="themeToggle" class="btn ghost sm" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+<section class="hero">
+  <div class="hero-text">
+    <h1>✅ Order Confirmed!</h1>
+    <p>Thank you for shopping with us. Your order has been placed successfully and will be shipped soon.</p>
+  </div>
+  <img src="images/confirm.png" alt="Order Success"/>
+</section>
+
+<section class="confirmation">
+  <p id="orderNumber" class="big"></p>
+  <p id="emailMessage" class="muted"></p>
+  <br>
+  <div class="order-details card">
+    <h3>Order Summary</h3>
+    <div id="orderItems" class="summary"></div>
+    <div class="totals small">
+      <div class="row"><span>Subtotal</span><strong id="cnSubtotal">₹0</strong></div>
+      <div class="row"><span>Discount</span><strong id="cnDiscount">-₹0</strong></div>
+      <div class="row"><span>Tax</span><strong id="cnTax">₹0</strong></div>
+      <div class="row"><span>Shipping</span><strong id="cnShipping">₹0</strong></div>
+      <div class="row grand"><span>Total</span><strong id="cnGrand">₹0</strong></div>
+    </div>
+    <p id="couponUsed" class="muted"></p>
+  </div>
+
+  <div class="actions">
+    <a href="track.html" class="btn ghost">Track Order</a>
+    <button class="btn" onclick="goHome()">Go to Home</button>
+  </div>
+</section>
+
+<!-- simple confetti container -->
+<div id="confetti"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
